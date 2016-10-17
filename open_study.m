@@ -1,6 +1,6 @@
 clc;
 clear all;
-path2 = '/Volumes/DanielDisk/HifoCap/epilepsiae_patientdata/data/raw_data/pat_1328803/adm_132880103/rec_13288010103/13288010103_009.data';
+path2 = '/Volumes/DANFIT1/HifoCap/epilepsiae_patientdata/data/raw_data/pat_1328803/adm_132880103/rec_13288010103/13288010103_009.data';
 study = bin_file(path2);
 chosen_electrodes = cellstr(['P4';'O2']);
 study.def_data_access(3,3,chosen_electrodes,0);
