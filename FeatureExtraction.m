@@ -124,8 +124,8 @@ WaveletDb8Dec6Feature,WaveletHaarDec1Feature,WaveletHaarDec2Feature,WaveletHaarD
 WaveletHaarDec6Feature,ShortEnergyFeature,RMSFeature,LineLengthFeature,LocalMaxFeature,LocalMinFeature,labels);
 
 
-
-
+%% Notify mobile when done
+webread('https://maker.ifttt.com/trigger/spyder/with/key/ou3_qyIHH3IV22kLJrvLT_AJLLNR8PyUqu8dmZvIlGH');
 
 
 
