@@ -1,10 +1,19 @@
 %% Separate master window into data and labels
-clear onlyData;
-clear onlyLabels;
+clear data;
+clear labels;
+clear labelForWindow;
 
 data = master_window(:,1:end-1);
 labels = master_window(:,end);
 
+%% Compute text labels instead of numbers
+labelForWindow = cell(size(labels));
+labelForWindow(:) = {'normal'};
+for i=find(labels)
+    labelForWindow(i) = {'seizure'};
+end
+
+getFeatureTime(data);
 %% Compute Features and determine execution time
 
 execTimeFeatures = zeros(60,1);
@@ -58,7 +67,7 @@ disp('Computing Hjorth features');
 
 %%
 disp('Computing Entropy features');
-[SampEnFeature,execTimeFeatures(27,:)] = evaluateFeature(@f_sampen2,data,3,2);
+[SampEnFeature,execTimeFeatures(27,:)] = evaluateFeature(@f_sampen2,data,3,0.2);
 [ApEnFeature,execTimeFeatures(28,:)] = evaluateFeature(@f_apen_est2,data);
 
 %%
@@ -121,12 +130,11 @@ WaveletDb2Dec6Feature,WaveletDb4Dec1Feature,WaveletDb4Dec2Feature,WaveletDb4Dec3
 WaveletDb4Dec6Feature,WaveletDb6Dec1Feature,WaveletDb6Dec2Feature,WaveletDb6Dec3Feature,WaveletDb6Dec4Feature,WaveletDb6Dec5Feature,...
 WaveletDb6Dec6Feature,WaveletDb8Dec1Feature,WaveletDb8Dec2Feature,WaveletDb8Dec3Feature,WaveletDb8Dec4Feature,WaveletDb8Dec5Feature,...
 WaveletDb8Dec6Feature,WaveletHaarDec1Feature,WaveletHaarDec2Feature,WaveletHaarDec3Feature,WaveletHaarDec4Feature,WaveletHaarDec5Feature,...
-WaveletHaarDec6Feature,ShortEnergyFeature,RMSFeature,LineLengthFeature,LocalMaxFeature,LocalMinFeature,labels);
+WaveletHaarDec6Feature,ShortEnergyFeature,RMSFeature,LineLengthFeature,LocalMaxFeature,LocalMinFeature,labelForWindow);
 
 
 %% Notify mobile when done
-webread('https://maker.ifttt.com/trigger/spyder/with/key/ou3_qyIHH3IV22kLJrvLT_AJLLNR8PyUqu8dmZvIlGH');
-
+notify();
 
 
 
