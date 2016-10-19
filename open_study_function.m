@@ -4,7 +4,7 @@ function master_window = open_study_function(path2,channels,window_size)
     study = bin_file(path2);
     %['P4';'O2']
     chosen_electrodes = cellstr(channels);
-    study.def_data_access(3,3,chosen_electrodes,0);
+    study.def_data_access(window_size,window_size,chosen_electrodes,0);
     study.get_notes();
     eeg = study.get_bin_signals([],[]);
     
@@ -12,9 +12,7 @@ function master_window = open_study_function(path2,channels,window_size)
     labeledEEG = [eeg;zeros(1,eegDim(2))];
     if ~isempty(study.a_note_struct)
         [event_start,event_end] = study.a_note_struct.sample;
-        labeledEEG(3,event_start:event_end) = 1;
-    else
-        labeledEEG = [eeg;zeros(1,eegDim(2))];
+        labeledEEG(eegDim(1)+1,event_start:event_end) = 1;
     end
     
 
@@ -31,11 +29,11 @@ function master_window = open_study_function(path2,channels,window_size)
         count = 0;
         windows = zeros(num_of_windows,window_sample_size+1);
         while(index < (eegDim(2)-window_sample_size))
-            label_value = labeledEEG(3,index);
+            label_value = labeledEEG(eegDim(1)+1,index);
             window = zeros(1,window_sample_size+1);
             local_index = 1;
             for index_window = index:(index+window_sample_size)
-                if(labeledEEG(3,index_window) ~= label_value)
+                if(labeledEEG(eegDim(1)+1,index_window) ~= label_value)
                     break;
                 else
                     window(local_index) = labeledEEG(channel,index_window);
