@@ -9,13 +9,13 @@ function [time,execTimeFeatures] = getFeatureTime(data)
 
     %%
    
-    disp('Computing statistical features');
+    %('Computing statistical features');
     [meanFeature,execTimeFeatures(1,:)] = evaluateFeature(@mean,data(1,:));
     [skewnessFeature,execTimeFeatures(2,:)] = evaluateFeature(@skewness,data(1,:));
     [kurtosisFeature,execTimeFeatures(3,:)] = evaluateFeature(@kurtosis,data(1,:));
 
     %%
-    disp('Computing AR features');
+    %('Computing AR features');
     [AR_CoeffBurg10Feature,execTimeFeatures(4,:)] = evaluateFeature(@f_ARCoeff,data(1,:),10,'burg');
     [AR_CoeffCov10Feature,execTimeFeatures(5,:)] = evaluateFeature(@f_ARCoeff,data(1,:),10,'cov');
     [AR_CoeffMcov10Feature,execTimeFeatures(6,:)] = evaluateFeature(@f_ARCoeff,data(1,:),10,'mcov');
@@ -23,7 +23,7 @@ function [time,execTimeFeatures] = getFeatureTime(data)
     [AR_CoeffLpc10Feature,execTimeFeatures(8,:)] = evaluateFeature(@f_ARCoeff,data(1,:),10,'lpc');
 
     %%
-    disp('Computing Power features');
+    %('Computing Power features');
     [PowDeltaFeature,execTimeFeatures(9,:)] = evaluateFeature(@f_RelPow2,data(1,:),sampleFrequency,[0.1 4]);
     [PowThetaFeature,execTimeFeatures(10,:)] = evaluateFeature(@f_RelPow2,data(1,:),sampleFrequency,[4.1 7]);
     [PowAlphaFeature,execTimeFeatures(11,:)] = evaluateFeature(@f_RelPow2,data(1,:),sampleFrequency,[7.1 15]);
@@ -32,7 +32,7 @@ function [time,execTimeFeatures] = getFeatureTime(data)
     [PowGamma2Feature,execTimeFeatures(14,:)] = evaluateFeature(@f_RelPow2,data(1,:),sampleFrequency,[64.1 128]);
 
     %%
-    disp('Computing SEF features');
+    %('Computing SEF features');
     [SEF50Feature,execTimeFeatures(15,:)] = evaluateFeature(@f_SpecEdgeFreq2,data(1,:),sampleFrequency,sampleFrequency/2.0,50);
     [SEF60Feature,execTimeFeatures(16,:)] = evaluateFeature(@f_SpecEdgeFreq2,data(1,:),sampleFrequency,sampleFrequency/2.0,60);
     [SEF70Feature,execTimeFeatures(17,:)] = evaluateFeature(@f_SpecEdgeFreq2,data(1,:),sampleFrequency,sampleFrequency/2.0,70);
@@ -44,21 +44,21 @@ function [time,execTimeFeatures] = getFeatureTime(data)
     [SEF95Feature,execTimeFeatures(23,:)] = evaluateFeature(@f_SpecEdgeFreq2,data(1,:),sampleFrequency,sampleFrequency/2.0,95);
 
     %%
-    disp('Computing Decorr features');
+    %('Computing Decorr features');
     [DecorrTimeFeature,execTimeFeatures(24,:)] = evaluateFeature(@f_DecorrTime2,data(1,:),sampleFrequency);
 
     %%
-    disp('Computing Hjorth features');
+    %('Computing Hjorth features');
     [HjorthMobilFeature,execTimeFeatures(25,:)] = evaluateFeature(@f_Hjorth,data(1,:),sampleFrequency,0);
     [HjorthComplxFeature,execTimeFeatures(26,:)] = evaluateFeature(@f_Hjorth,data(1,:),sampleFrequency,1);
 
     %%
-    disp('Computing Entropy features');
+    %('Computing Entropy features');
     [SampEnFeature,execTimeFeatures(27,:)] = evaluateFeature(@f_sampen2,data(1,:),3,0.2);
     [ApEnFeature,execTimeFeatures(28,:)] = evaluateFeature(@f_apen_est2,data(1,:));
 
     %%
-    disp('Computing Wavelet DB features');
+    %('Computing Wavelet DB features');
     [WaveletDb2Dec1Feature,execTimeFeatures(29,:)] = evaluateFeature(@wav_coef,data(1,:),sampleFrequency,'db2',1);
     [WaveletDb2Dec2Feature,execTimeFeatures(30,:)] = evaluateFeature(@wav_coef,data(1,:),sampleFrequency,'db2',2);
     [WaveletDb2Dec3Feature,execTimeFeatures(31,:)] = evaluateFeature(@wav_coef,data(1,:),sampleFrequency,'db2',3);
@@ -88,7 +88,7 @@ function [time,execTimeFeatures] = getFeatureTime(data)
     [WaveletDb8Dec6Feature,execTimeFeatures(52,:)] = evaluateFeature(@wav_coef,data(1,:),sampleFrequency,'db8',6);
 
     %%
-    disp('Computing Wavelet Haar features');
+    %('Computing Wavelet Haar features');
     [WaveletHaarDec1Feature,execTimeFeatures(53,:)] = evaluateFeature(@wav_coef,data(1,:),sampleFrequency,'haar',1);
     [WaveletHaarDec2Feature,execTimeFeatures(54,:)] = evaluateFeature(@wav_coef,data(1,:),sampleFrequency,'haar',2);
     [WaveletHaarDec3Feature,execTimeFeatures(55,:)] = evaluateFeature(@wav_coef,data(1,:),sampleFrequency,'haar',3);
@@ -97,11 +97,11 @@ function [time,execTimeFeatures] = getFeatureTime(data)
     [WaveletHaarDec6Feature,execTimeFeatures(58,:)] = evaluateFeature(@wav_coef,data(1,:),sampleFrequency,'haar',6);
 
     %%
-    disp('Computing Energy features');
+    %('Computing Energy features');
     [ShortEnergyFeature,execTimeFeatures(59,:)] = evaluateFeature(@energy2,data(1,:));
 
     %%
-    disp('Computing simple linear features');
+    %('Computing simple linear features');
     [RMSFeature,execTimeFeatures(60,:)] = evaluateFeature(@rms,data(1,:));
     [LineLengthFeature,execTimeFeatures(61,:)] = evaluateFeature(@f_linelength,data(1,:));
     [LocalMaxFeature,execTimeFeatures(62,:)] = evaluateFeature(@max,data(1,:));

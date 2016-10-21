@@ -29,11 +29,12 @@ disp('Computing statistical features');
 
 %%
 disp('Computing AR features');
-[AR_CoeffBurg10Feature,execTimeFeatures(4,:)] = evaluateFeature(@f_ARCoeff,data,10,'burg');
-[AR_CoeffCov10Feature,execTimeFeatures(5,:)] = evaluateFeature(@f_ARCoeff,data,10,'cov');
-[AR_CoeffMcov10Feature,execTimeFeatures(6,:)] = evaluateFeature(@f_ARCoeff,data,10,'mcov');
-[AR_CoefYule10Feature,execTimeFeatures(7,:)] = evaluateFeature(@f_ARCoeff,data,10,'yule');
-[AR_CoeffLpc10Feature,execTimeFeatures(8,:)] = evaluateFeature(@f_ARCoeff,data,10,'lpc');
+orderOfARCoeff = 5;
+[AR_CoeffBurg10Feature,execTimeFeatures(4,:)] = evaluateFeature(@f_ARCoeff,data,orderOfARCoeff,'burg');
+[AR_CoeffCov10Feature,execTimeFeatures(5,:)] = evaluateFeature(@f_ARCoeff,data,orderOfARCoeff,'cov');
+[AR_CoeffMcov10Feature,execTimeFeatures(6,:)] = evaluateFeature(@f_ARCoeff,data,orderOfARCoeff,'mcov');
+[AR_CoefYule10Feature,execTimeFeatures(7,:)] = evaluateFeature(@f_ARCoeff,data,orderOfARCoeff,'yule');
+[AR_CoeffLpc10Feature,execTimeFeatures(8,:)] = evaluateFeature(@f_ARCoeff,data,orderOfARCoeff,'lpc');
 
 %%
 disp('Computing Power features');

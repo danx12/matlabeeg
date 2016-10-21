@@ -1,8 +1,9 @@
 clc;
 clear all;
-path2 = '/Volumes/DANFIT1/HifoCap/epilepsiae_patientdata/data/raw_data/pat_1328803/adm_132880103/rec_13288010103/13288010103_009.data';
+path2 = '/Volumes/DANFIT1/HifoCap/pat_73202/adm_732102/rec_73201102/73201102_0000.data';
 study = bin_file(path2);
-chosen_electrodes = cellstr(['P4';'O2']);
+% chosen_electrodes = cellstr(['P4';'O2']);
+chosen_electrodes = cellstr(['G_A1';'G_A2';'G_A3']);
 study.def_data_access(3,3,chosen_electrodes,0);
 study.get_notes();
 eeg = study.get_bin_signals([],[]);
