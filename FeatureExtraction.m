@@ -17,7 +17,7 @@ getFeatureTime(data);
 %% Compute Features and determine execution time
 
 execTimeFeatures = zeros(60,1);
-sampleFrequency = 400;
+sampleFrequency = 256;
 %Format:
 %[#Feature,execTimeFeatures(#,:)] = evaluateFeature(@#,data);
 

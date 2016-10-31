@@ -1,5 +1,5 @@
 function notify(mobile)
-    if(isempty(mobile))
+    if(nargin < 1)
         mobile = 0;
     end
     if(mobile)
