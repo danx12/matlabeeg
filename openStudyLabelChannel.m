@@ -1,5 +1,6 @@
 %%
-path2 = '/Volumes/DANFIT1/HifoCap/epilepsiae_patientdata/data/raw_data/pat_1328803/adm_132880103/*/**/*.data';
+% path2 = '/Volumes/DANFIT1/HifoCap/epilepsiae_patientdata/data/raw_data/pat_1328803/adm_132880103/*/**/*.data';
+path2= './surf30/pat_22602/adm_226102/*/**/*.data';
 files = rdir(path2);
 fileNames = {files.name};
 fileIdxEvents = [];
@@ -8,7 +9,7 @@ fileIdxEvents = [];
 for i=1:length(fileNames)
     disp(['Computing channel-label data for file: ' int2str(i) ' of ' int2str(length(files))]);
     study = bin_file(fileNames{i});
-    chosen_electrodes = cellstr(['T4';'C4';'F7']);
+    chosen_electrodes = cellstr(['CZ';'F3';'C3']);
     study.def_data_access(3,3,chosen_electrodes,0);
     study.get_notes();
     eeg = study.get_bin_signals([],[]);
